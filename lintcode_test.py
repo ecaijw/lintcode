@@ -654,5 +654,57 @@ print(SolutionValidPalindrome().isPalindrome('1a2'))
 print(SolutionValidPalindrome().isPalindrome('123a456a7'))
 print(SolutionValidPalindrome().isPalindrome('abc'))
 print(SolutionValidPalindrome().isPalindrome("snake"))
+
+# Given binary tree A = {3,9,20,#,#,15,7}, B = {3,#,20,15,7}
+# A)  3            B)    3
+#    / \                  \
+#   9  20                 20
+#     /  \                / \
+#    15   7              15  7
+# The binary tree A is a height-balanced binary tree, but B is not.
+print('SolutionBalancedBinaryTree')
+a = TreeNode.treeGenerator([3,9,20,15,7])
+a[0].left = a[1]
+a[0].right = a[2]
+a[2].left = a[3]
+a[2].right = a[4]
+print(SolutionBalancedBinaryTree().isBalanced(a[0]))
+
+a = TreeNode.treeGenerator([3,20,15,7])
+a[0].right = a[1]
+a[1].left = a[2]
+a[1].right = a[3]
+print(SolutionBalancedBinaryTree().isBalanced(a[0]))
+
+# {1,2,3,4,5,6,7,8,9,#,11,12,13,14,15,16,#,#,17,#,#,18,19,20,21,22,23,24,25}
+a = TreeNode.treeGenerator([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
+a[1].left  = a[2]
+a[1].right = a[3]
+a[2].left  = a[4]
+a[2].right = a[5]
+a[3].left  = a[6]
+a[3].right = a[7]
+a[4].left  = a[8]
+a[4].right = a[9]
+a[5].left  = None
+a[5].right = a[11]
+a[6].left  = a[12]
+a[6].right = a[13]
+a[7].left  = a[14]
+a[7].right = a[15]
+a[8].left  = a[16]
+a[8].right = None
+a[9].left  = None
+a[9].right = a[17]
+a[12].left  = a[18]
+a[12].right = a[19]
+a[13].left  = a[20]
+a[13].right = a[21]
+a[14].left  = a[22]
+a[14].right = a[23]
+a[15].left  = a[24]
+a[15].right = a[25]
+# a[1].treePrint()
+print(SolutionBalancedBinaryTree().isBalanced(a[1]))
 ###########################################
 

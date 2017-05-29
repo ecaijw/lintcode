@@ -4003,7 +4003,9 @@ class SolutionValidPalindrome:
 
 # Balanced Binary Tree
 # Given a binary tree, determine if it is height-balanced.
-# For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
+# For this problem, a height-balanced binary tree is defined
+# as a binary tree in which the depth of the two subtrees
+# of every node never differ by more than 1.
 # Example
 # Given binary tree A = {3,9,20,#,#,15,7}, B = {3,#,20,15,7}
 # A)  3            B)    3
@@ -4020,10 +4022,24 @@ class TreeNode:
         self.left, self.right = None, None
 """
 class SolutionBalancedBinaryTree:
+    def checkDepth(self, root, depth):
+        if (root == None):
+            return (True, depth)
+
+        # print('depth : %d' % depth)
+        (lRet, lDepth) = self.checkDepth(root.left, depth + 1)
+        if (lRet == False):
+            return (False, depth)
+        (rRet, rDepth) = self.checkDepth(root.right, depth + 1)
+        if (rRet == False):
+            return (False, depth)
+        # print('%d, %d' % (lDepth, rDepth))
+        return (abs(lDepth - rDepth) <= 1, max(lDepth, rDepth))
+
     """
     @param root: The root of binary tree.
     @return: True if this Binary tree is Balanced, or false.
     """
     def isBalanced(self, root):
         # write your code here
-        pass
+        return self.checkDepth(root, 0)[0]
