@@ -3954,19 +3954,52 @@ class SolutionCheckPalindrome:
         return True
 
 # Valid Palindrome
-# Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+# Given a string, determine if it is a palindrome, considering
+# only alphanumeric characters and ignoring cases.
 #  Notice
-# Have you consider that the string might be empty? This is a good question to ask during an interview.
+# Have you consider that the string might be empty?
+# This is a good question to ask during an interview.
 # For the purpose of this problem, we define empty string as valid palindrome.
 # Example
 # "A man, a plan, a canal: Panama" is a palindrome.
 # "race a car" is not a palindrome.
 class SolutionValidPalindrome:
+    def convert(self, char):
+        # only alphanumeric characters and ignoring cases.
+        # return None: indicate invalid character
+        o = ord(char)
+        if (ord('0') <= o and o <= ord('9')):
+            return o
+        if (ord('a') <= o and o <= ord('z')):
+            return o
+        if (ord('A') <= o and o <= ord('Z')):
+            return o + (ord('a') - ord('A'))
+        return None
+
     # @param {string} s A string
     # @return {boolean} Whether the string is a valid palindrome
     def isPalindrome(self, s):
         # Write your code here
-        pass
+        if (s ==None or len(s) == 0):
+            return True
+        h = 0
+        t = len(s) - 1
+        while (h < t):
+            c1 = self.convert(s[h])
+            while (c1 == None and h < t):
+                h += 1
+                c1 = self.convert(s[h])
+
+            c2 = self.convert(s[t])
+            while (c2 == None and h < t):
+                t -= 1
+                c2 = self.convert(s[t])
+            # print('' + chr(c1) + ' ' + chr(c2))
+            if (c1 != c2):
+                return False
+            h += 1
+            t -= 1
+        return True
 
 # Balanced Binary Tree
 # Given a binary tree, determine if it is height-balanced.

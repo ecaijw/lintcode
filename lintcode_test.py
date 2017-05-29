@@ -641,5 +641,18 @@ print(SolutionCheckPalindrome().palindromeNumber(0))
 print(SolutionCheckPalindrome().palindromeNumber(1))
 print(SolutionCheckPalindrome().palindromeNumber(12321))
 print(SolutionCheckPalindrome().palindromeNumber(2344432))
+
+print('SolutionValidPalindrome')
+print(SolutionValidPalindrome().isPalindrome(None))
+print(SolutionValidPalindrome().isPalindrome(''))
+print(SolutionValidPalindrome().isPalindrome('a'))
+print(SolutionValidPalindrome().isPalindrome('(*^a@a)(*&^'))
+print(SolutionValidPalindrome().isPalindrome(',;^$'))
+print(SolutionValidPalindrome().isPalindrome("abbba"))
+print(SolutionValidPalindrome().isPalindrome("A man, a plan, a canal: Panama"))
+print(SolutionValidPalindrome().isPalindrome('1a2'))
+print(SolutionValidPalindrome().isPalindrome('123a456a7'))
+print(SolutionValidPalindrome().isPalindrome('abc'))
+print(SolutionValidPalindrome().isPalindrome("snake"))
 ###########################################
 
