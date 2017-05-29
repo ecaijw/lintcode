@@ -634,5 +634,12 @@ triangle =[
   [4,1,8,3]
 ]
 print(SolutionTriangle().minimumTotal(triangle))
+
+
+print('SolutionCheckPalindrome')
+print(SolutionCheckPalindrome().palindromeNumber(0))
+print(SolutionCheckPalindrome().palindromeNumber(1))
+print(SolutionCheckPalindrome().palindromeNumber(12321))
+print(SolutionCheckPalindrome().palindromeNumber(2344432))
 ###########################################
 

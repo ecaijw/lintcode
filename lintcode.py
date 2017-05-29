@@ -3918,3 +3918,79 @@ class SolutionTriangle:
             ret = min(triangle[row][col], ret)
             col += 1
         return ret
+
+# Palindrome Number
+# Check a positive number is a palindrome or not.
+# A palindrome number is that if you reverse the whole number
+# you will get exactly the same number.
+#  Notice
+# It's guaranteed the input number is a 32-bit integer,
+# but after reversion, the number may exceed the 32-bit integer.
+# Example
+# 11, 121, 1, 12321 are palindrome numbers.
+# 23, 32, 1232 are not palindrome numbers.
+class SolutionCheckPalindrome:
+    # @param {int} num a positive number
+    # @return {boolean} true if it's a palindrome or false
+    def palindromeNumber(self, num):
+        # Write your code here
+        # convert num to a string
+        s = ''
+        while (num >= 0):
+            one = num % 10
+            s = s + ('%d' % one)
+            num = num // 10
+            if (num == 0):
+                break
+        # check wheter s is palindrome
+        mid = len(s) // 2
+        if ((len(s) > 1) and ((len(s) % 2) == 1)):
+            mid -= 1
+        i = 0
+        while (i <= mid):
+            if (s[i] != s[len(s) - 1 - i]):
+                return False
+            i += 1
+        return True
+
+# Valid Palindrome
+# Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+#  Notice
+# Have you consider that the string might be empty? This is a good question to ask during an interview.
+# For the purpose of this problem, we define empty string as valid palindrome.
+# Example
+# "A man, a plan, a canal: Panama" is a palindrome.
+# "race a car" is not a palindrome.
+class SolutionValidPalindrome:
+    # @param {string} s A string
+    # @return {boolean} Whether the string is a valid palindrome
+    def isPalindrome(self, s):
+        # Write your code here
+        pass
+
+# Balanced Binary Tree
+# Given a binary tree, determine if it is height-balanced.
+# For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
+# Example
+# Given binary tree A = {3,9,20,#,#,15,7}, B = {3,#,20,15,7}
+# A)  3            B)    3
+#    / \                  \
+#   9  20                 20
+#     /  \                / \
+#    15   7              15  7
+# The binary tree A is a height-balanced binary tree, but B is not.
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+class SolutionBalancedBinaryTree:
+    """
+    @param root: The root of binary tree.
+    @return: True if this Binary tree is Balanced, or false.
+    """
+    def isBalanced(self, root):
+        # write your code here
+        pass
