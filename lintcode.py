@@ -4043,3 +4043,46 @@ class SolutionBalancedBinaryTree:
     def isBalanced(self, root):
         # write your code here
         return self.checkDepth(root, 0)[0]
+
+# Sqrt(x)
+# Implement int sqrt(int x).
+# Compute and return the square root of x.
+# Example
+# sqrt(3) = 1
+# sqrt(4) = 2
+# sqrt(5) = 2
+# sqrt(10) = 3
+# solution: binary search
+class SolutionSqrtX:
+    """
+    @param x: An integer
+    @return: The sqrt of x
+    """
+    def sqrt(self, x):
+        # write your code here
+        #maxInt = (1 << 31) - 1
+        isNeg = x < 0
+        x = abs(x)
+        start = 0
+        end = (1 << 16)  # maxRet * maxRet > max
+        mid = (end - start) // 2
+        counter = 1
+        while (True):
+            # print('[%d, %d, %d]' % (start, mid, end))
+            counter += 1
+            if (mid * mid == x):
+                break
+            if (mid * mid < x):
+                if (mid + 1 >= end):
+                    break
+                start = mid
+                mid = start + min(1, (end - start) // 2)
+                continue
+            else:
+                end = mid
+                mid = start + min(1, (end - start) // 2)
+                continue
+        # print('counter: %d' % counter)
+        if (isNeg == True):
+            mid *= -1
+        return mid

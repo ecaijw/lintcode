@@ -706,5 +706,17 @@ a[15].left  = a[24]
 a[15].right = a[25]
 # a[1].treePrint()
 print(SolutionBalancedBinaryTree().isBalanced(a[1]))
+
+print('SolutionSqrtX')
+print(SolutionSqrtX().sqrt(0))
+print(SolutionSqrtX().sqrt(3))
+print(SolutionSqrtX().sqrt(4))
+print(SolutionSqrtX().sqrt(5))
+print(SolutionSqrtX().sqrt(10))
+print(SolutionSqrtX().sqrt(1000))
+print(SolutionSqrtX().sqrt(12345678))
+print(SolutionSqrtX().sqrt(-1))
+print(SolutionSqrtX().sqrt(-1000))
+print(SolutionSqrtX().sqrt(-12345678))
 ###########################################
 
