@@ -718,5 +718,10 @@ print(SolutionSqrtX().sqrt(12345678))
 print(SolutionSqrtX().sqrt(-1))
 print(SolutionSqrtX().sqrt(-1000))
 print(SolutionSqrtX().sqrt(-12345678))
+
+print('SolutionRemoveNthNode')
+l = ListNode.listGenerator([1,2,3,4,5])
+l = SolutionRemoveNthNode().removeNthFromEnd(l, 2)
+l.listPrint()
 ###########################################
 

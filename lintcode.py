@@ -4086,3 +4086,55 @@ class SolutionSqrtX:
         if (isNeg == True):
             mid *= -1
         return mid
+
+# Remove Nth Node From End of List
+# Given a linked list, remove the nth node
+# from the end of list and return its head.
+#  Notice
+# The minimum number of nodes in list is n.
+# Example
+# Given linked list: 1->2->3->4->5->null, and n = 2.
+# After removing the second node from the end,
+# the linked list becomes 1->2->3->5->null.
+"""
+Definition of ListNode
+class ListNode(object):
+
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+"""
+class SolutionRemoveNthNode:
+    """
+    @param head: The first node of linked list.
+    @param n: An integer.
+    @return: The head of linked list.
+    """
+    def removeNthFromEnd(self, head, n):
+        # write your code here
+        # find the length
+        length = 0
+        p = head
+        while (p != None):
+            length += 1
+            p = p.next
+        if (length < n):
+            return head # do nothing
+
+        # traverse to (length - n)
+        counter = 0
+        prev = None
+        p = head
+        while (counter < (length - n)):
+            counter += 1
+            prev = p
+            p = p.next
+
+        # remove the node
+        if (prev == None):
+            # remove head
+            head = p.next
+        else:
+            prev.next = p.next
+
+        return head
