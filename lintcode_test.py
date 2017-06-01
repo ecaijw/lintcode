@@ -723,5 +723,49 @@ print('SolutionRemoveNthNode')
 l = ListNode.listGenerator([1,2,3,4,5])
 l = SolutionRemoveNthNode().removeNthFromEnd(l, 2)
 l.listPrint()
+
+print('SolutionMergeIntervals')
+
+ret = SolutionMergeIntervals().merge([
+    Interval(1,3),
+    Interval(5,7),
+    Interval(2,2),
+])
+Interval.print(ret)
+
+ret = SolutionMergeIntervals().merge([
+    Interval(1,3),
+    Interval(5,7),
+    Interval(4,6),
+])
+Interval.print(ret)
+
+ret = SolutionMergeIntervals().merge([
+    Interval(1,3),
+    Interval(2,6),
+    Interval(8,10),
+    Interval(15,18),
+])
+Interval.print(ret)
+
+ret = SolutionMergeIntervals().merge([
+    Interval(2,3),
+    Interval(4,5),
+    Interval(6,7),
+    Interval(1,10),
+])
+Interval.print(ret)
+
+
+ret = SolutionMergeIntervals().merge([
+    Interval(2,3),
+    Interval(2,2),
+    Interval(3,3),
+    Interval(1,3),
+    Interval(5,7),
+    Interval(2,2),
+    Interval(4,6),
+])
+Interval.print(ret)
 ###########################################
 

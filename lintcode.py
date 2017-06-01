@@ -4138,3 +4138,154 @@ class SolutionRemoveNthNode:
             prev.next = p.next
 
         return head
+
+# Merge Intervals
+# Given a collection of intervals, merge all overlapping intervals.
+# Example
+# Given intervals => merged intervals:
+# [                     [
+#   [1, 3],               [1, 6],
+#   [2, 6],      =>       [8, 10],
+#   [8, 10],              [15, 18]
+#   [15, 18]            ]
+# ]
+
+
+# """
+# Definition of Interval.
+class Interval(object):
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+
+    def print(intervals):
+        print('intervals')
+        i = 0
+        while (i < len(intervals)):
+            print('interval %d: [%d, %d]' % (i, intervals[i].start, intervals[i].end))
+            i += 1
+# """
+
+
+class SolutionMergeIntervals:
+    def findIndex(self, intervals, interval):
+        # binary search
+        if (len(intervals) == 0):
+            return 0
+        if (interval.start <= intervals[0].start):
+            # try to merge with first one
+            return 0
+        if (interval.start >= intervals[-1].start):
+            # try to merge with last one
+            return len(intervals) - 1
+
+        start = 0
+        end = len(intervals) - 1
+        mid = (end - start) // 2
+        while (True):
+            if (intervals[mid].start == interval.start):
+                return mid
+            if (intervals[mid].start < interval.start):
+                start = mid
+                mid = start + max(1, (end - start) // 2)
+            else:
+                if (mid >= end):
+                    return mid - 1
+                end = mid
+                mid = start + max(1, (end - start) // 2)
+        return mid
+
+    def canMerge(self, i1, i2):
+        return ((i1.start <= i2.start and i2.start <= i1.end) or
+                (i2.start <= i1.start and i1.start <= i2.end))
+
+    # @param intervals, a list of Interval
+    # @return a list of Interval
+    def merge(self, intervals):
+        # write your code here
+        if (len(intervals) <= 1):
+            return intervals
+        ret = [intervals[0]]
+        i = 1
+        while (i < len(intervals)):
+            foundIndex = self.findIndex(ret, intervals[i])
+            index = None
+            if (self.canMerge(ret[foundIndex], intervals[i])):
+                index = foundIndex
+            else:
+                if ((foundIndex + 1 < len(ret)) and
+                    (self.canMerge(ret[foundIndex + 1], intervals[i]))):
+                    index = foundIndex + 1
+            if (index != None):
+                # merge
+                ret[index].start = min(ret[index].start, intervals[i].start)
+                ret[index].end = max(ret[index].end, intervals[i].end)
+                # after merge, should try in-place merge
+                while (index + 1 < len(ret)):
+                    if (self.canMerge(ret[index], ret[index + 1])):
+                        ret[index].start = min(ret[index].start, ret[index + 1].start)
+                        ret[index].end = max(ret[index].end, ret[index + 1].end)
+                        del ret[index + 1]
+                    else:
+                        break
+            else:
+                if (intervals[i].start > ret[foundIndex].start):
+                    foundIndex += 1
+                ret.insert(foundIndex, intervals[i])
+            i += 1
+        return ret
+
+# wrong: not consider the case [ [1,10], [2,3], [4,5] ]
+class SolutionMergeIntervals_wrong:
+    def findIndex(self, intervals, interval):
+        # binary search
+        if (len(intervals) == 0):
+            return 0
+        if (interval.start <= intervals[0].start):
+            # try to merge with first one
+            return 0
+        if (interval.start >= intervals[-1].start):
+            # try to merge with last one
+            return len(intervals) - 1
+
+        start = 0
+        end = len(intervals)
+        mid = (end - start) // 2
+        while (True):
+            if (interval.start == intervals[mid].start):
+                return mid
+            if (interval.start < intervals[mid].start):
+                if (mid + 1 >= end):
+                    return end
+                start = mid
+                mid = start + min(1, (end - start) // 2)
+            else:
+                end = mid
+                mid = start + min(1, (end - start) // 2)
+        return mid
+
+    def canMerge(self, i1, i2):
+        return ((i1.start <= i2.start and i2.start <= i1.end) or
+                (i2.start <= i1.start and i1.start <= i2.end))
+
+    # @param intervals, a list of Interval
+    # @return a list of Interval
+    def merge(self, intervals):
+        # write your code here
+        if (len(intervals) <= 1):
+            return intervals
+        ret = [intervals[0]]
+        i = 1
+        while (i < len(intervals)):
+            index = self.findIndex(ret, intervals[i])
+            if (self.canMerge(ret[index], intervals[i])):
+                # merge
+                ret[index].start = min(ret[index].start, intervals[i].start)
+                ret[index].end = max(ret[index].end, intervals[i].end)
+            else:
+                if (index == len(ret) - 1):
+                    ret.append(intervals[i])
+                else:
+                    ret.insert(intervals[i], index)
+            i += 1
+        return ret
