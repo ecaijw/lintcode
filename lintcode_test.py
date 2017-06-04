@@ -767,5 +767,14 @@ ret = SolutionMergeIntervals().merge([
     Interval(4,6),
 ])
 Interval.print(ret)
+
+print('SolutionRemoveDuplicatesfromSortedList')
+l = ListNode.listGenerator([1,1,2])
+l = SolutionRemoveDuplicatesfromSortedList().deleteDuplicates(l)
+l.listPrint()
+
+l = ListNode.listGenerator([1,1,2,3,3])
+l = SolutionRemoveDuplicatesfromSortedList().deleteDuplicates(l)
+l.listPrint()
 ###########################################
 

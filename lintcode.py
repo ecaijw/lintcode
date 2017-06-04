@@ -4289,3 +4289,31 @@ class SolutionMergeIntervals_wrong:
                     ret.insert(intervals[i], index)
             i += 1
         return ret
+
+# Remove Duplicates from Sorted List
+# Given a sorted linked list, delete all duplicates
+# such that each element appear only once.
+# Example
+# Given 1->1->2, return 1->2.
+# Given 1->1->2->3->3, return 1->2->3.
+"""
+Definition of ListNode
+class ListNode(object):
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+"""
+class SolutionRemoveDuplicatesfromSortedList:
+    """
+    @param head: A ListNode
+    @return: A ListNode
+    """
+    def deleteDuplicates(self, head):
+        # write your code here
+        p = head
+        while (p != None):
+            while ((p.next != None) and
+                   (p.val == p.next.val)):
+                p.next = p.next.next
+            p = p.next
+        return head
