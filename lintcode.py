@@ -4317,3 +4317,140 @@ class SolutionRemoveDuplicatesfromSortedList:
                 p.next = p.next.next
             p = p.next
         return head
+
+# Rotate Image
+# You are given an n x n 2D matrix representing an image.
+# Rotate the image by 90 degrees (clockwise).
+# Example
+# Given a matrix
+# [
+#     [1,2],
+#     [3,4]
+# ]
+# rotate it by 90 degrees (clockwise), return
+# [
+#     [3,1],
+#     [4,2]
+# ]
+class SolutionRotateImage:
+    """
+    @param matrix: A list of lists of integers
+    @return: Nothing
+    """
+    def rotate(self, matrix):
+        # write your code here
+        pass
+
+# Binary Tree Level Order Traversal
+# Given a binary tree, return the level order traversal
+# of its nodes' values. (ie, from left to right, level by level).
+# Example
+# Given binary tree {3,9,20,#,#,15,7},
+#     3
+#    / \
+#   9  20
+#     /  \
+#    15   7
+# return its level order traversal as:
+#  
+# [
+#   [3],
+#   [9,20],
+#   [15,7]
+# ]
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+
+
+# this solution: input is a tree root
+class SolutionLevelOrderTraversal:
+    def traverse(self, ret, current):
+        next = []
+        i = 0
+        while (i < len(current)):
+            node = current[i]
+            if (node.left != None):
+                next.append(node.left)
+            if (node.right != None):
+                next.append(node.right)
+            i += 1
+        if (len(next) == 0):
+            return
+        ret.append(next)
+        self.traverse(ret, next)
+
+    """
+    @param root: The root of binary tree.
+    @return: Level order in a list of lists of integers
+    """
+    def levelOrder(self, root):
+        # write your code here
+        if (root == None):
+            return []
+        ret = [[root]]
+        self.traverse(ret, ret[0])
+        return ret
+
+    # test: python 2.7 does not support append(root), only support append(root.val)
+    def levelOrder2(self, root):
+        # write your code here
+        if (root == None):
+            return []
+        ret = []
+        l = []
+        l.append(root)
+        ret.append(l)
+        self.traverse(ret, ret[0])
+        return ret
+
+
+# this solution: input is an array of tree value
+# example: {3,9,20,#,#,15,7},
+class SolutionLevelOrderTraversal_1:
+    """
+    @param root: The root of binary tree.
+    @return: Level order in a list of lists of integers
+    """
+    def levelOrder(self, root):
+        # write your code here
+        if (root == None or len(root) == 0):
+            return []
+        ret = []
+        level = [root[0]]
+        ret.append(level)
+
+        level = []
+        parentIndex = 0
+        parentEnd = 0
+        i = 1
+        while (True):
+            # left node
+            if (i >= len(root)):
+                break  # out of range
+            if  (root[i] != '#'):
+                level.append(root[i])
+            i += 1
+
+            # right node
+            if (i >= len(root)):
+                break  # out of range
+            if  (root[i] != '#'):
+                level.append(root[i])
+            i+= 1
+
+            # move a parent node
+            parentIndex += 1
+            if (parentIndex > parentEnd):
+                # move to next level
+                # print(i, level)
+                if (len(level) > 0):
+                    ret.append(level)
+                parentIndex = parentEnd + 1
+                parentEnd = parentEnd + len(level) - 1
+                level = []
+        return ret

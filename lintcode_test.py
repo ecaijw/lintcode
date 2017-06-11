@@ -776,5 +776,65 @@ l.listPrint()
 l = ListNode.listGenerator([1,1,2,3,3])
 l = SolutionRemoveDuplicatesfromSortedList().deleteDuplicates(l)
 l.listPrint()
+
+print('SolutionRotateImage')
+matrix=[
+    [1,2],
+    [3,4]
+]
+SolutionRotateImage().rotate(matrix)
+print(matrix)
+
+matrix=[
+    [3,1],
+    [4,2]
+]
+SolutionRotateImage().rotate(matrix)
+print(matrix)
+
+matrix=[
+    [1,2,3],
+    [4,5,6],
+    [7,8,9],
+]
+SolutionRotateImage().rotate(matrix)
+print(matrix)
+
+print('SolutionLevelOrderTraversal')
+#     3
+#    / \
+#   9  20
+#     /  \
+#    15   7
+a = TreeNode.treeGenerator([3,9,20,15,7])
+a[0].left = a[1]
+a[0].right = a[2]
+a[2].left = a[3]
+a[2].right = a[4]
+
+r = SolutionLevelOrderTraversal().levelOrder(a[0])
+
+i = 0
+while (i < len(r)):
+    j = 0
+    line = ''
+    while (j < len(r[i])):
+        line += (' %d' % r[i][j].val)
+        j += 1
+    print(line)
+    i += 1
+
+print('SolutionLevelOrderTraversal_1')
+r = SolutionLevelOrderTraversal_1().levelOrder([3,9,20,'#', '#', 15,7])
+
+i = 0
+while (i < len(r)):
+    j = 0
+    line = ''
+    while (j < len(r[i])):
+        line += (' %d' % r[i][j])
+        j += 1
+    print(line)
+    i += 1
 ###########################################
 
