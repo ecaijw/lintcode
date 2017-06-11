@@ -838,5 +838,12 @@ while (i < len(r)):
         j += 1
     print(line)
     i += 1
+
+
+print('SolutionLengthofLastWord')
+print(SolutionLengthofLastWord().lengthOfLastWord("Hello World"))
+print(SolutionLengthofLastWord().lengthOfLastWord("   Hello World   "))
+print(SolutionLengthofLastWord().lengthOfLastWord("   "))
+
 ###########################################
 

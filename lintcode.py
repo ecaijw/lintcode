@@ -4530,3 +4530,32 @@ class SolutionLevelOrderTraversal_1:
                 parentEnd = parentEnd + len(level) - 1
                 level = []
         return ret
+
+# Length of Last Word
+# Given a string s consists of upper/lower-case
+#  alphabets and empty space characters ' ',
+# return the length of last word in the string.
+# If the last word does not exist, return 0.
+# Example
+# Given s = "Hello World", return 5.
+class SolutionLengthofLastWord:
+    # @param {string} s A string
+    # @return {int} the length of last word
+    def lengthOfLastWord(self, s):
+        start = None
+        i = len(s) - 1
+        # find start
+        while (i >= 0):
+            if (s[i] != ' '):
+                start = i
+                i -= 1
+                break
+            i -= 1
+        if (start == None):
+            return 0
+        # find end
+        while (i >= 0):
+            if (s[i] == ' '):
+                return start - i
+            i -= 1
+        return start + 1
