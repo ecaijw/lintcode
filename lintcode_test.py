@@ -845,5 +845,17 @@ print(SolutionLengthofLastWord().lengthOfLastWord("Hello World"))
 print(SolutionLengthofLastWord().lengthOfLastWord("   Hello World   "))
 print(SolutionLengthofLastWord().lengthOfLastWord("   "))
 
+print('SolutionSwapNodesinPairs')
+l = ListNode.listGenerator([1,2,3,4])
+print(SolutionSwapNodesinPairs().swapPairs(l))
+l.listPrint()
+
+l = ListNode.listGenerator([1,2,3])
+print(SolutionSwapNodesinPairs().swapPairs(l))
+l.listPrint()
+
+l = ListNode.listGenerator([1,2,3,4,5])
+print(SolutionSwapNodesinPairs().swapPairs(l))
+l.listPrint()
 ###########################################
 

@@ -4559,3 +4559,34 @@ class SolutionLengthofLastWord:
                 return start - i
             i -= 1
         return start + 1
+
+# Swap Nodes in Pairs
+# Given a linked list, swap every two adjacent nodes and return its head.
+# Example
+# Given 1->2->3->4, you should return the list as 2->1->4->3.
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class SolutionSwapNodesinPairs:
+    # @param head, a ListNode
+    # @return a ListNode
+    def swapPairs(self, head):
+        # Write your code here
+        if (head == None):
+            return head
+        prev = head
+        next = prev.next
+        counter = 2
+        while (next != None):
+            if (counter % 2 == 0):
+                # swap value
+                temp = next.val
+                next.val = prev.val
+                prev.val = temp
+            prev = next
+            next = next.next
+            counter += 1
+        return head
