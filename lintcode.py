@@ -4332,14 +4332,90 @@ class SolutionRemoveDuplicatesfromSortedList:
 #     [3,1],
 #     [4,2]
 # ]
+# solution:
+# go along the edge
+#  ------>
+#  ^      |
+#  | < --
+# 1) right
+#    d1 = (n - 1) - j  ,  d2 = (n - 1) - d1  .   d1 + d2 == n - 1
+#    j = j + d1
+#    i = i + d2
+# 2) down
+#    d1 = (n - 1) - i  ,  d2 = (n - 1) - d1  .   d1 + d2 == n - 1
+#    i = i + d1
+#    j = j - d2
+# 3) left
+#    d1 = j  ,  d2 = (n - 1) - d1  .   d1 + d2 == n - 1
+#    j = j - d1
+#    i = i - d2
+# 4) up
+#    d1 = i  ,  d2 = (n - 1) - d1  .   d1 + d2 == n - 1
+#    i = i - d1
+#    j = j + d2
 class SolutionRotateImage:
+    def calcPoint(self, i, j, n, edgeNumber):
+        if (edgeNumber == 1):
+            d1 = (n - 1) - j
+            d2 = n - 1 - d1
+            j = j + d1
+            i = i + d2
+        elif (edgeNumber == 2):
+            d1 = (n - 1) - i
+            d2 = n - 1 - d1
+            i = i + d1
+            j = j - d2
+        elif (edgeNumber == 3):
+            d1 = j
+            d2 = n - 1 - d1
+            j = 0
+            i = i - d2
+        elif (edgeNumber == 4):
+            d1 = i
+            d2 = n - 1 - d1
+            i = 0
+            j = j + d2
+        return (i, j)
+
+    def rotate4Edges(self, matrix, i0, j0, n):
+        col = 0
+        while (col < n - 1):
+            i = 0
+            j = col
+            curVal = matrix[i0 + i][j0 + j]
+            edgeNumber = 1
+            while (edgeNumber <= 4):
+                # prevI = i
+                # prevJ = j
+
+                (i, j) = self.calcPoint(i, j , n, edgeNumber)
+
+                # print('%d: [%d, %d] --> [%d, %d], %d' % (edgeNumber, prevI, prevJ, i, j, curVal))
+
+                temp = matrix[i0 + i][j0 + j]
+                matrix[i0 + i][j0 + j] = curVal
+                curVal = temp
+                edgeNumber += 1
+            col += 1
+        pass
+
     """
     @param matrix: A list of lists of integers
     @return: Nothing
     """
     def rotate(self, matrix):
         # write your code here
-        pass
+        i0 = 0
+        j0 = 0
+        n = len(matrix)
+        while (True):
+            if (n <= 1):
+                break
+            self.rotate4Edges(matrix, i0, j0, n)
+            i0 += 1
+            j0 += 1
+            n -= 2
+        return
 
 # Binary Tree Level Order Traversal
 # Given a binary tree, return the level order traversal
